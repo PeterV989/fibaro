@@ -1,3 +1,20 @@
+--%%name="Nest"
+--%%type="com.fibaro.deviceController"
+--%%root=quickApp/Nest/
+--%%file=thermostat.lua,thermostat;
+--%%file=humidity.lua,humidity;
+--%%file=temperature.lua,temperature;
+--%%file=motion.lua,motion;
+--%%file=pubsub.lua,pubsub;
+--%%debug=http:true, hc3_http:false, dark:true, refresh:false
+--%%noStock=true
+--%%var=projectId:"e2e5eff3-4879-4600-94e1-908249e9c4aa"
+--%%var=code:"4/0AfJohXnF0CYAgJa4v_YJ2oOxDgP7htzAFMCu9rgMrmfCMYYlEsagDpuCQ1GccwGt46_GqA"
+--%%var=refreshToken:"-"
+--%%var=clientId:"990646885351-f62prot83d4s5jqnf34k19n44827vmrd.apps.googleusercontent.com"
+--%%var=clientSecret:"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"
+--%%var=frequency:60
+
 -- Device Controller is a little more advanced than other types. 
 -- It can create child devices, so it can be used for handling multiple physical devices.
 -- E.g. when connecting to a hub, some cloud service or just when you want to represent a single physical device as multiple endpoints.

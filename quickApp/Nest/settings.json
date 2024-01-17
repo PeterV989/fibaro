@@ -1,0 +1,72 @@
+{
+    "json.validate.enable": false, // disable json validation, problem currently
+
+    "Lua.diagnostics.globals": [
+        "QuickApp",
+        "fibaro",
+        "api",
+        "net",
+        "json",
+        "___id",
+        "setTimeout",
+        "clearTimeout",
+        "setInterval",
+        "clearInterval",
+        "QuickAppChild",
+        "QuickAppBase",
+        "plugin",
+        "class",
+        "__fibaroSleep",
+        "__fibaro_get_global_variable",
+        "__fibaro_get_device",
+        "__fibaro_get_devices",
+        "__fibaro_get_room",
+        "__fibaro_get_scene",
+        "__fibaro_get_device_property",
+        "__fibaro_get_breached_partitions",
+        "__fibaro_add_debug_message",
+        "quickApp",
+        "__TAG",
+        "__assert_type",
+        "__fibaro_get_partition",
+        "hub",
+        "__print",
+        "__setTimeout",
+        "__clearTimeout",
+        "__fibaroUseAsyncHandler",
+        "QuickerAppChild",
+        "MyChild",
+        "UDPServer",
+        "QwikAppChild",
+        "sourceTrigger",
+        "_sceneId"
+    ],
+    "Lua.diagnostics.disable": [
+        "duplicate-set-field",
+        "param-type-mismatch"
+    ],
+    "Lua.editor.defaultFormatter": "JohnnyMorganz.stylua",
+    "Lua.workspace.library": [
+        ".vscode/emufiles/lspaddon/library"
+    ],
+    "Lua.hint.enable": true,
+    "Lua.workspace.checkThirdParty": true,
+
+    "rest-client.environmentVariables": {
+        "local": {
+            "host": "127.0.0.1:5004",
+            "user": "admin",
+            "pwd" : "admin"
+        },
+        "hc3": {
+            "host": "192.168.1.57:80",
+            "user": "admin",
+            "pwd" : "admin"
+        }
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "python.formatting.provider": "none",
+    "lua.targetVersion": "5.3"
+}

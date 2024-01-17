@@ -1,0 +1,49 @@
+{
+    "QA headers": {
+        "prefix": "fibemu.header",
+        "body": [
+            "--%%name=${1:MyQA}",
+            "--%%type=com.fibaro.${2:binarySwitch}",
+            "-- %%var=myVar:42,myVar2:43",
+            "-- %%file=lib/fibaroExtra.lua,fibaroExtra;",
+            "-- %%debug=refreshStates:true",
+            "$0"
+        ],
+        "description": "QA headers for fibemu"
+    },
+    "QA def0": {
+        "prefix": "QA.onInit",
+        "body": [
+            "function QuickApp:onInit()",
+            "   self:debug('onInit',self.name,self.id)",
+            "end",
+            "$0"
+        ],
+        "description": "QA structure"
+    },
+    "QA def1": {
+        "prefix": "QA.binarySwitch",
+        "body": [
+            "--%%name=${1:MyQA}",
+            "--%%type=com.fibaro.binarySwitch",
+            "",
+            "function QuickApp:onInit()",
+            "   self:debug('onInit',self.name,self.id)",
+            "end",
+            "",
+            "function QuickApp:turnOn()",
+            "   self:debug('turnOn')",
+            "   self:updateProperty('value',true)",
+            "   self:updateProperty('state',true)",
+            "end",
+            "",
+            "function QuickApp:turnOff()",
+            "   self:debug('turnOff')",
+            "   self:updateProperty('value',false)",
+            "   self:updateProperty('state',false)",
+            "end",
+            "$0"
+        ],
+        "description": "QA structure"
+    }
+}
