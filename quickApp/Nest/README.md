@@ -10,11 +10,11 @@ Device type: *device controller*
 
 ## Nest Thermostat
 
-Support for multiples Nest Thermostats in the same account
+Support for multiple Nest Thermostats in the same account
 
 *Features*: change the heating/cooling point, change/get mode, get state, get ambiant temperature and humidity
 
-*Supported mode*: Off, Manual Eco, Heat, Cool (if Thermostat support it), Auto
+*Supported mode*: Off, Manual Eco, Heat, Cool (if Thermostat supports it), Auto
 
 *Supported unit*: Celsius and Fahrenheit
 
@@ -28,9 +28,9 @@ Support for multiples Nest Thermostats in the same account
 
 Support for multiples devices with camera, such as Nest Hub Max, Nest DoorBell.
 
-*Features*: detect of motion person
+*Features*: motion detection of people
 
-*Account permissions requirement*: know when an event occurs (included motion)
+*Account permissions requirement*: know when an event occurs (including motion)
 
 ## Nest DoorBell
 
@@ -38,7 +38,7 @@ Support for Nest DoorBell.
 
 *Features*: doorbell chime
 
-*Account permissions requirement*: know when a personn press the doorbell
+*Account permissions requirement*: know when a person presses the doorbell
 
 ![Screenshot](img/Nest_motion.png)
 
@@ -46,13 +46,13 @@ Support for Nest DoorBell.
 
 ## Requirement
 
-Create an Google Device Nest Account in [https://developers.google.com/nest/device-access](https://developers.google.com/nest/device-access)
+Create a Google Device Nest Account in [https://developers.google.com/nest/device-access](https://developers.google.com/nest/device-access)
 
 Follow the QuickStart in [https://developers.google.com/nest/device-access/get-started](https://developers.google.com/nest/device-access/get-started)
 
 Link your account in [https://developers.google.com/nest/device-access/authorize](https://developers.google.com/nest/device-access/authorize)
 
-## Detailled Installation Guide
+## Detailed Installation Guide
 
 All steps are explained in the quickstart [https://developers.google.com/nest/device-access/get-started](https://developers.google.com/nest/device-access/get-started)
 
@@ -64,39 +64,39 @@ These steps are:
     - Enter https://www.google.com as the value for Authorized redirect URIs.
     - Keep the **_"OAuth 2.0 Client ID"_** and **_"Client Secret"_** values (they are also written in the file credentials.json)
 4. Create a new project in [https://console.nest.google.com/device-access/project-list](https://console.nest.google.com/device-access/project-list)
-    - Set a project's name
-    - Set the **_"OAuth 2.0 Client ID"_** retrieved during the step 2
-    - Google cloud Pub/Sub is required only for camera and door bell (not for thermosthat). See [specific installation](doc/pubsub.md)
-    - At the end, you obtain a **_"Project ID"_** of the form "32c4c2bc-fe0d-461b-b51c-f3885afff2f0"
-5. To finish, you can import the quickApp in Fibaro Home Center 3 and set the Variables (see the table below)
+    - Set your project's name
+    - Set the **_"OAuth 2.0 Client ID"_** retrieved during step 2
+    - Google Cloud Pub/Sub is only required for camera and door bell (not for thermostat). See [specific installation](doc/pubsub.md)
+    - At the end, you will obtain a **_"Project ID"_** of the form "32c4c2bc-fe0d-461b-b51c-f3885afff2f0"
+5. To finish, import the quickApp in Fibaro Home Center 3 and set the Variables (see the table below)
 
 ## Variables
 
 | Name          | Description   | Example of value |
 | ------------- | ------------- |------------------|
-| projectId    |  **_"Project ID"_** created in [https://console.nest.google.com/device-access/project-list](https://console.nest.google.com/device-access/project-list) (step 3 of the detailled installation guide)    |  32c4c2bc-fe0d-461b-b51c-f3885afff2f0 |
-| clientId  | **_"OAuth 2.0 Client ID"_** created in [https://console.developers.google.com/apis/credentials](https://console.developers.google.com/apis/credentials) (step 2 of the detailled installation guide)  | xxxxxxx-xxxxxxxxxxxxxxx.apps.googleusercontent.com |
-| clientSecret  |  **_"Client Secret"_** created in [https://console.developers.google.com/apis/credentials](https://console.developers.google.com/apis/credentials) (step 2 of the detailled installation guide)  | |
-| code  | **_"Authentication code"_**. Set xxx for the fisrt time and see [below](#get-the-authentication-code) | 4/xxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
+| projectId    |  **_"Project ID"_** created in [https://console.nest.google.com/device-access/project-list](https://console.nest.google.com/device-access/project-list) (step 3 of the detailed installation guide)    |  32c4c2bc-fe0d-461b-b51c-f3885afff2f0 |
+| clientId  | **_"OAuth 2.0 Client ID"_** created in [https://console.developers.google.com/apis/credentials](https://console.developers.google.com/apis/credentials) (step 2 of the detailed installation guide)  | xxxxxxx-xxxxxxxxxxxxxxx.apps.googleusercontent.com |
+| clientSecret  |  **_"Client Secret"_** created in [https://console.developers.google.com/apis/credentials](https://console.developers.google.com/apis/credentials) (step 2 of the detailed installation guide)  | |
+| code  | **_"Authentication code"_**. Set xxx for the first time and see [below](#get-the-authentication-code) | 4/xxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
 |gcpProjectId| See [the doc](doc/pubsub.md#retrieve-the-gcp-project-id) to get it| domotique-xxxxxxxxx |
-| subscription | the subscription retrieve in [Step 5 of pubsub doc](doc/pubsub.md#detailled-installation-guide)| fibaro |
-| frequency  | delay in second to refresh the value  | 60 |
-| refreshToken  | OAuth2 refresh token  | Automatically retrieve. Set it to ‘-’ for the fisrt time |
+| subscription | the subscription retrieved in [Step 5 of pubsub doc](doc/pubsub.md#detailed-installation-guide)| fibaro |
+| frequency  | delay in second to refresh the values  | 60 |
+| refreshToken  | OAuth2 refresh token  | Automatically retrieved. Set it to ‘-’ for the first time |
 
 ![Parameters](img/parameters.png)
 
 ## Get the Authentication code
 
-Once the quickApp is started, after few minutes, you will receive a mail, notification and error log containing a URL.
-This URL is used to configure authorization. Do:
+Once the quickApp is started, after a few minutes, you will receive an email, a notification and an error log containing a URL.
+This URL is used to configure your authorization. Do:
 - Open the link (be sure to use the full URL)
-- Login to you Google account
-- Allow to get information about your home (at step 1) ([Screenshot](#authentication---clientsecret-problem))
-- Allow access and control to your Nest Thermostat (at step 2) ([Screenshot](#authentication---clientsecret-problem))
+- Login to your Google account
+- Allow access to information about your home (at step 1) ([Screenshot](#authentication---clientsecret-problem))
+- Allow access and control of your Nest Thermostat (at step 2) ([Screenshot](#authentication---clientsecret-problem))
 - If necessary, allow access to Nest Camera events (motion detection) and Nest Doorbell events (button press).
-- At the end, you will be redirected to an URL of the form https://www.google.com/?code=4/xxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&scope=https://www.googleapis.com/auth/sdm.service
+- At the end, you will be redirected to a URL of the form https://www.google.com/?code=4/xxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&scope=https://www.googleapis.com/auth/sdm.service
     - The part 4/xxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx is the **_"Authentication code"_**
-    - Copy/paste manually this code inside the corresponding quickApp variable named 'code'.
+    - Manually copy/paste this code inside the corresponding quickApp variable named 'code'.
 
 
 # Troubleshooting
@@ -105,7 +105,7 @@ You can force a restart of the quickApp by restarting the Fibaro Home Center or 
 
 ### Authentication - projectId problem
 
-In the console log, you have this kind of log (you have to wait 2*frequency because each authentication step is made one loop).
+In the console log, you have this kind of log (you have to wait 2*frequency because each authentication step is made during one loop).
 
 ```bash
 [23.01.2023] [14:06:26] [ERROR] [QUICKAPP245]: getAccessToken() status is 400: { "error
@@ -114,7 +114,7 @@ In the console log, you have this kind of log (you have to wait 2*frequency beca
 [23.01.2023] [14:08:26] [ERROR] [QUICKAPP245]: Need to refresh Nest Authentication code for quickApp 245 with https://nestservices.google.com/partnerconnections/xxx/auth?redirect_uri=https://www.google.com&access_type=offline&prompt=consent&client_id=xxx.apps.googleusercontent.com&response_type=code&scope=https://www.googleapis.com/auth/sdm.service
 ```
 
-When you open the URL, after logging into your Google account, if you got this kind of error, you have made errors in **_"Project ID"_**. Check if [all installation steps](#detailled-installation-guide) are correct.
+When you open the URL and log into your Google account, if you got this kind of error, you have made errors in **_"Project ID"_**. Check if [all installation steps](#detailed-installation-guide) are correct.
 
 ![Authentication_error_projectid](img/authentication_error_projectid.png)
 
@@ -128,7 +128,7 @@ When you open the URL, after logging into your Google account, if you got this k
 [23.01.2023] [14:08:26] [ERROR] [QUICKAPP245]: Need to refresh Nest Authentication code for quickApp 245 with https://nestservices.google.com/partnerconnections/xxx/auth?redirect_uri=https://www.google.com&access_type=offline&prompt=consent&client_id=xxx.apps.googleusercontent.com&response_type=code&scope=https://www.googleapis.com/auth/sdm.service
 ```
 
-If you got this kind of error, your projectId is correct and you have made errors in **_"OAuth 2.0 Client ID"_**. Check if [all installation steps](#detailled-installation-guide) are correct.
+If you get this kind of error, your projectId is correct but you made errors in **_"OAuth 2.0 Client ID"_**. Check if [all installation steps](#detailed-installation-guide) are correct.
 
 
 ![Authentication_error_clientid](img/authentication_error_clientid.png)
@@ -136,12 +136,12 @@ If you got this kind of error, your projectId is correct and you have made error
 
 ### Authentication - clientSecret problem
 
-When your projectId and clientId is correct you have a page like this:
+When your projectId and clientId are correct you should see a page like this:
 
 ![acls](img/acl.png)
 
-At the end of the process, you have the [Authentication code](#get-the-authentication-code).
-After setting the code in the quickApp's parameter, if you get an error log like this, you made have a problem in **_"Client Secret"_** or **_"Authentication code"_**.
+At the end of the process, you will receive the [Authentication code](#get-the-authentication-code).
+After setting the code in the quickApp's parameter, if you get an error log like this, you have a problem in **_"Client Secret"_** or **_"Authentication code"_**.
 
 ```bash
 [23.01.2023] [14:06:26] [ERROR] [QUICKAPP245]: getAccessToken() status is 401: { "error
@@ -175,24 +175,24 @@ Three quickApp childs must be created (hvacSystem, Temperature and Humidity).
 
 ### Network error - Google Nest API
 
-You can check the performance of API call with [https://console.cloud.google.com/apis](https://console.cloud.google.com/apis).
+You can check the performance of API calls with [https://console.cloud.google.com/apis](https://console.cloud.google.com/apis).
 
 The API name is *Smart Device Management API*
 
 If you have some traffic, your connection is ok.
-The number of call/s depends of the frequency (default to one call per minute = 0.016/s).
-If you have less traffic, the problem come from your internet connection that failed to contact the Google API.
+The number of calls depends of the frequency (default to one call per minute = 0.016/s).
+If you have less traffic, the problem comes from your internet connection failing to contact the Google API.
 
 
-If you have some errors, the problem come from the Google API.
+If you have some errors, the problem comes from the Google API.
 
 ![API](img/SmartDeviceManagementAPI.png)
 
 
 ### Network error - Timeout
 
-If you have this error, the Google API tooks to long to respond.
-Consequently, the fibaro widget are not updated and you will have to wait the next loop (configured with frequency).
+If you have this error, the Google API took too long to respond.
+Consequently, the fibaro widgets are not updated and you will have to wait until the next loop (configured with frequency).
 
 This problem come from your internet connection or from the Google API.
 
@@ -202,10 +202,9 @@ This problem come from your internet connection or from the Google API.
 
 ### Google Nest API Error
 
-If you have this error, the Google API crash.
-Consequently, the fibaro widget are not updated and you will have to wait the next loop (configured with frequency).
+If you have this error, the Google API crashed.
+Consequently, the fibaro widgets are not updated and you will have to wait until the next loop (configured with frequency).
 
 ```bash
 [21.01.2023] [03:01:16] [ERROR] [QUICKAPP245]: listNestDevice() status is 500: { "error
 ```
-

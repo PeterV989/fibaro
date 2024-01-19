@@ -206,7 +206,7 @@ function NestThermostat:setThermostatMode(mode)
     end
 end
 
--- handle action for setting set point for heating
+-- handle action for setting set point for heating. ** Added second argument for current display units.
 function NestThermostat:setHeatingThermostatSetpoint(value, unitArg)
     self:debug(string.format('Update heating temperature %f%s with mode %s', value, unitArg,
         self.properties.thermostatMode))
@@ -226,6 +226,12 @@ function NestThermostat:setHeatingThermostatSetpoint(value, unitArg)
         self:debug('Original coolingThermostatSetpoint ' .. self.properties.coolingThermostatSetpoint)
 
         -- The coolingThermostatSetpoint must be greater than the heatingThermostatSetpoint.
+        -- Since both the heating and cooling setpoints are updated individually but the
+        -- Nest API must be adjusted for both values at the same time, there are problems when
+        -- the heating setpoint is hotter than the cooling setpoint. Solution (for now) is to
+        -- adjust the coolingThermostatSetpoint to be 1° higher than the heatingThermostatSetpoint.
+        -- **Note: If the user has not set these two setpoints correctly, the actual heating and cooling
+        -- setpoints will reflect a 1° difference from whichever setpoint has been called last.
         local coolValue = self.properties.coolingThermostatSetpoint
         if coolValue <= roundedHeatValue then
             coolValue = roundedHeatValue + 1
@@ -240,7 +246,7 @@ function NestThermostat:setHeatingThermostatSetpoint(value, unitArg)
     end
 end
 
--- handle action for setting set point for cooling
+-- handle action for setting set point for cooling. ** Added second argument for current display units.
 function NestThermostat:setCoolingThermostatSetpoint(value, unitArg)
     self:debug(string.format('Update cooling temperature %f%s with mode %s', value, unitArg,
         self.properties.thermostatMode))
@@ -260,6 +266,12 @@ function NestThermostat:setCoolingThermostatSetpoint(value, unitArg)
         self:debug('Original heatingThermostatSetpoint ' .. self.properties.heatingThermostatSetpoint)
 
         -- The coolingThermostatSetpoint must be greater than the heatingThermostatSetpoint.
+        -- Since both the heating and cooling setpoints are updated individually but the
+        -- Nest API must be adjusted for both values at the same time, there are problems when
+        -- the heating setpoint is hotter than the cooling setpoint. Solution (for now) is to
+        -- adjust the heatingThermostatSetpoint to be 1° lower than the coolingThermostatSetpoint.
+        -- **Note: If the user has not set these two setpoints correctly, the actual heating and cooling
+        -- setpoints will reflect a 1° difference from whichever setpoint has been called last.
         local heatValue = self.properties.heatingThermostatSetpoint
         if heatValue >= roundedCoolValue then
             heatValue = roundedCoolValue - 1

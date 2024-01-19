@@ -15,6 +15,11 @@
 --%%var=clientSecret:"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"
 --%%var=frequency:30
 
+-- *******Note******
+-- the remarks above the following line are used with the Fibaro emulator. They can be stripped out
+-- or left in (they are remarks, after all). See https://github.com/jangabrielsson/fibemu.git for
+-- information regarding the use of the emulator. It works on both Windows 11 and MacOS systems.
+-------------------------------------------------------------------------------------------------------
 -- Device Controller is a little more advanced than other types. 
 -- It can create child devices, so it can be used for handling multiple physical devices.
 -- E.g. when connecting to a hub, some cloud service or just when you want to represent a single physical device as multiple endpoints.
