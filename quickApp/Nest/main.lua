@@ -6,14 +6,14 @@
 --%%file=temperature.lua,temperature;
 --%%file=motion.lua,motion;
 --%%file=pubsub.lua,pubsub;
---%%debug=http:true, hc3_http:false, dark:true, refresh:false
+--%%debug=http:false, hc3_http:false, dark:true, refresh:false
 --%%noStock=true
 --%%var=projectId:"e2e5eff3-4879-4600-94e1-908249e9c4aa"
---%%var=code:"4/0AfJohXnF0CYAgJa4v_YJ2oOxDgP7htzAFMCu9rgMrmfCMYYlEsagDpuCQ1GccwGt46_GqA"
---%%var=refreshToken:"-"
+--%%var=code:"4/0AfJohXmIs71rVNps_VrJgUP94C_tPWb1VUq1XHiR_XQO_OrdPiHbX9V0GKXQ4xi_sQt4hQ"
+--%%var=refreshToken:"1//0fLSYCerEgdEtCgYIARAAGA8SNwF-L9Ir-J64v-fs_UuLmMc8pOvgMTUSCoj8DnFlQJe_i1PD9Vip3XYDe_OLoBiyYgRmTEcrPT0"
 --%%var=clientId:"990646885351-f62prot83d4s5jqnf34k19n44827vmrd.apps.googleusercontent.com"
 --%%var=clientSecret:"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"
---%%var=frequency:60
+--%%var=frequency:30
 
 -- Device Controller is a little more advanced than other types. 
 -- It can create child devices, so it can be used for handling multiple physical devices.

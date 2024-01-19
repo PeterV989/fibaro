@@ -1,1 +1,5 @@
 .vscode/emufiles
+/quickApp/NestThermostat
+/quickApp/OpenWeather
+/quickApp/unifiPresence
+/quickApp/unifiProtect

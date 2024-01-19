@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Fibenv QA file (remote, HC3 access)",    // For debugging QA lua file
+      "name": "Fibenv1 QA file (remote, HC3 access)",    // For debugging QA lua file
       "type": "lua-local",
       "request": "launch",
       "program": {
@@ -16,7 +16,7 @@
       "args": [
         ".vscode/emufiles/__init__.py",
         "-f",
-        "${relativeFile}" //"quickApp//main.lua"
+        "quickApp//Nest//main.lua"
       ],
       //"scriptRoots": ["${workspaceFolder}"], // Required for debugger to find scripts
       //"scriptFiles": ["*.lua", "**/*.lua"],

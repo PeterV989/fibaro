@@ -1,3 +1,15 @@
 {
-    "lua.targetVersion": "5.3"
+    "lua.targetVersion": "5.3",
+    "Lua.diagnostics.globals": [
+        "QuickAppChild",
+        "class",
+        "NestThermostat",
+        "NestThermostatHumidity",
+        "QuickApp",
+        "NestThermostatTemperature",
+        "NestMotionPerson",
+        "json",
+        "fibaro",
+        "api"
+    ]
 }
