@@ -229,12 +229,12 @@ function NestThermostat:setHeatingThermostatSetpoint(value, unitArg)
         -- Since both the heating and cooling setpoints are updated individually but the
         -- Nest API must be adjusted for both values at the same time, there are problems when
         -- the heating setpoint is hotter than the cooling setpoint. Solution (for now) is to
-        -- adjust the coolingThermostatSetpoint to be 1° higher than the heatingThermostatSetpoint.
+        -- adjust the coolingThermostatSetpoint to be 2° higher than the new heatingThermostatSetpoint.
         -- **Note: If the user has not set these two setpoints correctly, the actual heating and cooling
         -- setpoints will reflect a 1° difference from whichever setpoint has been called last.
         local coolValue = self.properties.coolingThermostatSetpoint
         if coolValue <= roundedHeatValue then
-            coolValue = roundedHeatValue + 1
+            coolValue = roundedHeatValue + 2
         end
 
         self:callNestApi("sdm.devices.commands.ThermostatTemperatureSetpoint.SetRange",
@@ -269,12 +269,12 @@ function NestThermostat:setCoolingThermostatSetpoint(value, unitArg)
         -- Since both the heating and cooling setpoints are updated individually but the
         -- Nest API must be adjusted for both values at the same time, there are problems when
         -- the heating setpoint is hotter than the cooling setpoint. Solution (for now) is to
-        -- adjust the heatingThermostatSetpoint to be 1° lower than the coolingThermostatSetpoint.
+        -- adjust the heatingThermostatSetpoint to be 2° lower than the new coolingThermostatSetpoint.
         -- **Note: If the user has not set these two setpoints correctly, the actual heating and cooling
         -- setpoints will reflect a 1° difference from whichever setpoint has been called last.
         local heatValue = self.properties.heatingThermostatSetpoint
         if heatValue >= roundedCoolValue then
-            heatValue = roundedCoolValue - 1
+            heatValue = roundedCoolValue - 2
         end
 
         self:callNestApi("sdm.devices.commands.ThermostatTemperatureSetpoint.SetRange",
