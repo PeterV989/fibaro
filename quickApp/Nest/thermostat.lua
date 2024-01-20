@@ -231,7 +231,7 @@ function NestThermostat:setHeatingThermostatSetpoint(value, unitArg)
         -- the heating setpoint is hotter than the cooling setpoint. Solution (for now) is to
         -- adjust the coolingThermostatSetpoint to be 2° higher than the new heatingThermostatSetpoint.
         -- **Note: If the user has not set these two setpoints correctly, the actual heating and cooling
-        -- setpoints will reflect a 1° difference from whichever setpoint has been called last.
+        -- setpoints will reflect a 2° difference from whichever setpoint has been called last.
         local coolValue = self.properties.coolingThermostatSetpoint
         if coolValue <= roundedHeatValue then
             coolValue = roundedHeatValue + 2
@@ -271,7 +271,7 @@ function NestThermostat:setCoolingThermostatSetpoint(value, unitArg)
         -- the heating setpoint is hotter than the cooling setpoint. Solution (for now) is to
         -- adjust the heatingThermostatSetpoint to be 2° lower than the new coolingThermostatSetpoint.
         -- **Note: If the user has not set these two setpoints correctly, the actual heating and cooling
-        -- setpoints will reflect a 1° difference from whichever setpoint has been called last.
+        -- setpoints will reflect a 2° difference from whichever setpoint has been called last.
         local heatValue = self.properties.heatingThermostatSetpoint
         if heatValue >= roundedCoolValue then
             heatValue = roundedCoolValue - 2
