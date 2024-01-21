@@ -4,5 +4,5 @@
 /quickApp/unifiPresence
 /quickApp/unifiProtect
 /quickApp/Nest/Issue 10.md
-/quickApp/Nest/config.json
+.vscode/config.json
 kill-port.ps1
