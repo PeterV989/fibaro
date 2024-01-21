@@ -8,11 +8,11 @@
 --%%file=pubsub.lua,pubsub;
 --%%debug=http:false, hc3_http:false, dark:true, refresh:false
 --%%noStock=true
---%%var=projectId:"e2e5eff3-4879-4600-94e1-908249e9c4aa"
---%%var=code:"4/0AfJohXmIs71rVNps_VrJgUP94C_tPWb1VUq1XHiR_XQO_OrdPiHbX9V0GKXQ4xi_sQt4hQ"
---%%var=refreshToken:"1//0fLSYCerEgdEtCgYIARAAGA8SNwF-L9Ir-J64v-fs_UuLmMc8pOvgMTUSCoj8DnFlQJe_i1PD9Vip3XYDe_OLoBiyYgRmTEcrPT0"
---%%var=clientId:"990646885351-f62prot83d4s5jqnf34k19n44827vmrd.apps.googleusercontent.com"
---%%var=clientSecret:"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"
+--%%var=projectId:config.projectId
+--%%var=code:config.code
+--%%var=refreshToken:config.refreshToken
+--%%var=clientId:config.clientId
+--%%var=clientSecret:clientSecret
 --%%var=frequency:30
 
 -- *******Note******

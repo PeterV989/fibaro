@@ -232,15 +232,17 @@ function NestThermostat:setHeatingThermostatSetpoint(value, unitArg)
         -- adjust the coolingThermostatSetpoint to be 2° higher than the new heatingThermostatSetpoint.
         -- **Note: If the user has not set these two setpoints correctly, the actual heating and cooling
         -- setpoints will reflect a 2° difference from whichever setpoint has been called last.
-        local coolValue = self.properties.coolingThermostatSetpoint
-        if coolValue <= roundedHeatValue then
-            coolValue = roundedHeatValue + 2
+        local coolValue = math.ceil(fibaro.getValue(self.id, 'coolingThermostatSetpoint') * 10) / 10
+        self:debug(string.format("getValue() returned %f", coolValue))
+        if (coolValue - roundedHeatValue) < 2.0 then
+            coolValue = roundedHeatValue + 2.0
         end
 
         self:callNestApi("sdm.devices.commands.ThermostatTemperatureSetpoint.SetRange",
             { ['heatCelsius'] = roundedHeatValue, ['coolCelsius'] = coolValue },
             function()
                 self:updateProperty("heatingThermostatSetpoint", roundedHeatValue)
+                self:debug('After heating update ' .. self.properties.heatingThermostatSetpoint)
             end
         )
     end
@@ -272,15 +274,17 @@ function NestThermostat:setCoolingThermostatSetpoint(value, unitArg)
         -- adjust the heatingThermostatSetpoint to be 2° lower than the new coolingThermostatSetpoint.
         -- **Note: If the user has not set these two setpoints correctly, the actual heating and cooling
         -- setpoints will reflect a 2° difference from whichever setpoint has been called last.
-        local heatValue = self.properties.heatingThermostatSetpoint
-        if heatValue >= roundedCoolValue then
-            heatValue = roundedCoolValue - 2
+        local heatValue = math.ceil(fibaro.getValue(self.id, 'heatingThermostatSetpoint') * 10) / 10
+        self:debug(string.format("getValue() returned %f", heatValue))
+        if (roundedCoolValue - heatValue) < 2 then
+            heatValue = roundedCoolValue - 2.0
         end
 
         self:callNestApi("sdm.devices.commands.ThermostatTemperatureSetpoint.SetRange",
             { ['heatCelsius'] = heatValue, ['coolCelsius'] = roundedCoolValue },
             function()
                 self:updateProperty("coolingThermostatSetpoint", roundedCoolValue)
+                self:debug('After cooling update ' .. self.properties.coolingThermostatSetpoint)
             end
         )
     end
@@ -325,7 +329,7 @@ function NestThermostat:callNestApi(command, params, callback)
             end
         end,
         error = function(error)
-            self:error("callNestApi() " .. message .. " failed: " .. json.encode(error))
+            self:error("callNestApi() " .. message .. " failed: \n" .. json.encode(error))
         end
     })
 end
