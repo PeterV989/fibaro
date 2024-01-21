@@ -2,5 +2,10 @@
     "host": "192.168.0.247",
     "user": "vermilyep@gmail.com",
     "password": "Smudge7-Librarian-Pry",
-    "dark": true
+    "dark": true,
+    "projectId": "e2e5eff3-4879-4600-94e1-908249e9c4aa",
+    "code": "4/0AfJohXmIs71rVNps_VrJgUP94C_tPWb1VUq1XHiR_XQO_OrdPiHbX9V0GKXQ4xi_sQt4hQ",
+    "refreshToken": "1//0fLSYCerEgdEtCgYIARAAGA8SNwF-L9Ir-J64v-fs_UuLmMc8pOvgMTUSCoj8DnFlQJe_i1PD9Vip3XYDe_OLoBiyYgRmTEcrPT0",
+    "clientId": "990646885351-f62prot83d4s5jqnf34k19n44827vmrd.apps.googleusercontent.com",
+    "clientSecret": "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"
 }

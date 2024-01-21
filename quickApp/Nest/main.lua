@@ -12,7 +12,7 @@
 --%%var=code:config.code
 --%%var=refreshToken:config.refreshToken
 --%%var=clientId:config.clientId
---%%var=clientSecret:clientSecret
+--%%var=clientSecret:config.clientSecret
 --%%var=frequency:30
 
 -- *******Note******
