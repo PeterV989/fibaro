@@ -6,8 +6,8 @@
 --%%file=temperature.lua,temperature;
 --%%file=motion.lua,motion;
 --%%file=pubsub.lua,pubsub;
---%%debug=http:true, hc3_http:false, dark:true, refresh:true
---%%noStock=false
+--%%debug=http:false, hc3_http:false, dark:true, refresh:false
+--%%noStock=true
 --%%var=projectId:config.projectId
 --%%var=code:config.code
 --%%var=refreshToken:config.refreshToken
@@ -15,7 +15,7 @@
 --%%var=clientSecret:config.clientSecret
 --%%var=frequency:30
 
--- *******Note*******
+-- *******Note******
 -- the remarks above the following line are used with the Fibaro emulator. They can be stripped out
 -- or left in (they are remarks, after all). See https://github.com/jangabrielsson/fibemu.git for
 -- information regarding the use of the emulator. It works on both Windows 11 and MacOS systems.
@@ -29,7 +29,6 @@
 -- Learn more about managing child devices: https://manuals.fibaro.com/home-center-3-quick-apps/
 -- Author: Guillaume Waignier
 -- Apache License 2.0
-
 
 function QuickApp:onInit()
     self:debug("QuickApp:onInit")

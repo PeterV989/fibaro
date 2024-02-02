@@ -7,3 +7,5 @@
 .vscode/config.json
 kill-port.ps1
 config.json
+/quickApp/Nest/config.json
+/quickApp/Nest/events.json

@@ -4,8 +4,6 @@
 -----------------------------------------------------------------------------
 class 'NestThermostat' (QuickAppChild)
 
-SETPOINTDELTA = 2.3 -- °C or ≈ 4°F
-
 -- __init is a constructor for this class. All new classes must have it.
 function NestThermostat:__init(device)
     -- You should not insert code before QuickAppChild.__init.
@@ -22,16 +20,9 @@ function NestThermostat:__init(device)
     self:updateProperty("coolingThermostatSetpoint", 30)
     self:updateProperty("log", "")
 
-    -- create four flags indicating pending setpoint update events and processing setpoint events.
-    self.heatEventPending = false
-    self.heatEventProcessing = false
-    self.coolEventPending = false
-    self.coolEventProcessing = false
-
-    -- create two tables to store the pending setpoints
-    self.heatSetpointPending = {}
-    self.coolSetpointPending = {}
-
+    -- update two variables for setpoint adjustments
+    self:setVariable('heatingThermostatSetpointHold', '0')
+    self:setVariable('coolingThermostatSetpointHold', '0')
 end
 
 function NestThermostat:updateDevice(body)
@@ -215,12 +206,15 @@ function NestThermostat:setThermostatMode(mode)
             end
         )
     else
-        self:error("Unknown mode " .. mode)
+        self:error("Unknow mode " .. mode)
     end
 end
 
 -- handle action for setting set point for heating. ** Added second argument for current display units.
 function NestThermostat:setHeatingThermostatSetpoint(value, unitArg)
+    self:debug(string.format('Update heating temperature %f%s with mode %s', value, unitArg,
+        self.properties.thermostatMode))
+
     local roundedHeatValue = self:getDegreesCelsius(value, unitArg)
 
     if (self.properties.thermostatMode == "Heat")
@@ -233,64 +227,45 @@ function NestThermostat:setHeatingThermostatSetpoint(value, unitArg)
         )
     elseif (self.properties.thermostatMode == "Auto")
     then
-        -- When the cooling setpoint is being processed, defer the heating setpoint update
-        if self.coolEventProcessing
-        then
-            -- indicate heating event has been deferred and store the new setpoints
-            -- the cooling setpoint update will either use these values, or execute
-            -- this method upon completion.
-            self.heatEventPending = true
-            self.heatSetpointPending = {
-                temp = value,
-                units = unitArg
-            }
-            self.heatEventProcessing = false
-        else
-            -- The coolingThermostatSetpoint must be greater than the heatingThermostatSetpoint.
-            -- Since both the heating and cooling setpoints are updated individually but the
-            -- Nest API must be adjusted for both values at the same time, there are problems when
-            -- the heating setpoint is hotter than the cooling setpoint. Solution (for now) is to
-            -- adjust the coolingThermostatSetpoint to be 2.3°C higher than the new heatingThermostatSetpoint.
-            -- **Note: If the user has not set these two setpoints correctly, the actual heating and cooling
-            -- setpoints will reflect a 2.3°C difference from whichever setpoint has been called last.
-            self.heatEventProcessing = true
-            self.heatEventPending = false
-            local coolValue = 0
-            local coolProcessing = false        -- assume the cooling setpoint hasn't been adjusted
-            if self.coolEventPending then       -- the event is pending, so use the new value
-                self.coolEventProcessing = true -- At this point we are handling the cooling setpoint as well
-                coolProcessing = true
-                self.coolEventPending = false
-                coolValue = self:getDegreesCelsius(self.coolSetpointPending.temp, self.coolSetpointPending.units)
-            else
-                -- Can't get the new cooling setpoint (maybe there won't be a new one?)
-                coolValue = self.properties.coolingThermostatSetpoint
-            end
-            coolValue = math.ceil(coolValue * 10) / 10
-            if (coolValue - roundedHeatValue) < SETPOINTDELTA then
-                coolValue = roundedHeatValue + SETPOINTDELTA
-            end
 
-            self:callNestApi("sdm.devices.commands.ThermostatTemperatureSetpoint.SetRange",
-                { ['heatCelsius'] = roundedHeatValue, ['coolCelsius'] = coolValue },
-                function()
-                    self:updateProperty("heatingThermostatSetpoint", roundedHeatValue)
-                    self.heatEventProcessing = false
-                    if coolProcessing then
-                        self:updateProperty('coolingThermostatSetpoint', coolValue)
-                        self.coolEventProcessing = false
-                    elseif self.coolEventPending then
-                        self.coolEventPending = false
-                        return self:setCoolingThermostatSetpoint(self.coolSetpointPending.temp, self.coolSetpointPending.units)
-                    end
-                end
-            )
+        self:setVariable("heatingThermostatSetpointHold", roundedHeatValue)
+        self:debug('Original coolingThermostatSetpoint ' .. self.properties.coolingThermostatSetpoint)
+
+        -- The coolingThermostatSetpoint must be greater than the heatingThermostatSetpoint.
+        -- Since both the heating and cooling setpoints are updated individually but the
+        -- Nest API must be adjusted for both values at the same time, there are problems when
+        -- the heating setpoint is hotter than the cooling setpoint. Solution (for now) is to
+        -- adjust the coolingThermostatSetpoint to be 2° higher than the new heatingThermostatSetpoint.
+        -- **Note: If the user has not set these two setpoints correctly, the actual heating and cooling
+        -- setpoints will reflect a 2° difference from whichever setpoint has been called last.
+        local coolValue = self:getVariable('coolingThermostatSetpointHold')
+        coolValue = tonumber(coolValue)
+        self:debug('coolingThermostatSetpointHold ' .. coolValue)
+        if coolValue < 0.1 then
+            coolValue = fibaro.getValue(self.id, 'coolingThermostatSetpoint')
         end
+        coolValue = math.ceil(coolValue * 10) / 10
+        self:debug(string.format("getValue() returned %f", coolValue))
+        if (coolValue - roundedHeatValue) < 2.0 then
+            coolValue = roundedHeatValue + 2.0
+        end
+
+        self:callNestApi("sdm.devices.commands.ThermostatTemperatureSetpoint.SetRange",
+            { ['heatCelsius'] = roundedHeatValue, ['coolCelsius'] = coolValue },
+            function()
+                self:updateProperty("heatingThermostatSetpoint", roundedHeatValue)
+                self:setVariable("heatingThermostatSetpointHold", "0")
+                self:debug('After heating update ' .. self.properties.heatingThermostatSetpoint)
+            end
+        )
     end
 end
 
 -- handle action for setting set point for cooling. ** Added second argument for current display units.
 function NestThermostat:setCoolingThermostatSetpoint(value, unitArg)
+    self:debug(string.format('Update cooling temperature %f%s with mode %s', value, unitArg,
+        self.properties.thermostatMode))
+
     local roundedCoolValue = self:getDegreesCelsius(value, unitArg)
 
     if (self.properties.thermostatMode == "Cool")
@@ -303,59 +278,36 @@ function NestThermostat:setCoolingThermostatSetpoint(value, unitArg)
         )
     elseif (self.properties.thermostatMode == "Auto")
     then
-        -- When the heating setpoint is being processed, defer the cooling setpoint update
-        if self.heatEventProcessing
-        then
-            -- indicate cooling event has been deferred and store the new setpoints
-            -- the heating setpoint update will either use these values, or execute
-            -- this method upon completion.
-            self.coolEventPending = true
-            self.coolSetpointPending = {
-                temp = value,
-                units = unitArg
-            }
-            self.coolEventProcessing = false
-        else
-            -- The coolingThermostatSetpoint must be greater than the heatingThermostatSetpoint.
-            -- Since both the heating and cooling setpoints are updated individually but the
-            -- Nest API must be adjusted for both values at the same time, there are problems when
-            -- the heating setpoint is hotter than the cooling setpoint. Solution (for now) is to
-            -- adjust the heatingThermostatSetpoint to be 2.3°C lower than the new coolingThermostatSetpoint.
-            -- **Note: If the user has not set these two setpoints correctly, the actual heating and cooling
-            -- setpoints will reflect a 2.3°C difference from whichever setpoint has been called last.
-            self.coolEventProcessing = true
-            self.coolEventPending = false
-            local heatValue = 0
-            local heatProcessing = false -- assume the heating setpoint hasn't been adjusted
-            if self.heatEventPending then -- the event has occurred, so use the new value
-                self.heatEventProcessing = true
-                heatProcessing = true
-                self.heatEventPending = false
-                heatValue = self:getDegreesCelsius(self.heatSetpointPending.temp, self.heatSetpointPending.units)
-            else
-                -- Can't get the new heating setpoint (maybe there won't be a new one?)
-                heatValue = self.properties.heatingThermostatSetpoint
-            end
-            heatValue = math.ceil(heatValue * 10) / 10
-            if (roundedCoolValue - heatValue) < SETPOINTDELTA then
-                heatValue = roundedCoolValue - SETPOINTDELTA
-            end
+        self:setVariable('coolingThermostatSetpointHold', roundedCoolValue)
+        self:debug('Original heatingThermostatSetpoint ' .. self.properties.heatingThermostatSetpoint)
 
-            self:callNestApi("sdm.devices.commands.ThermostatTemperatureSetpoint.SetRange",
-                { ['heatCelsius'] = heatValue, ['coolCelsius'] = roundedCoolValue },
-                function()
-                    self:updateProperty("coolingThermostatSetpoint", roundedCoolValue)
-                    self.coolEventProcessing = false
-                    if heatProcessing then
-                        self:updateProperty('heatingThermostatSetpoint', heatValue)
-                        self.heatEventProcessing = false
-                    elseif self.heatEventPending then
-                        self.heatEventPending = false
-                        self:setHeatingThermostatSetpoint(self.heatSetpointPending.temp, self.heatSetpointPending.units)
-                    end
-                end
-            )
+        -- The coolingThermostatSetpoint must be greater than the heatingThermostatSetpoint.
+        -- Since both the heating and cooling setpoints are updated individually but the
+        -- Nest API must be adjusted for both values at the same time, there are problems when
+        -- the heating setpoint is hotter than the cooling setpoint. Solution (for now) is to
+        -- adjust the heatingThermostatSetpoint to be 2° lower than the new coolingThermostatSetpoint.
+        -- **Note: If the user has not set these two setpoints correctly, the actual heating and cooling
+        -- setpoints will reflect a 2° difference from whichever setpoint has been called last.
+        local heatValue = self:getVariable('heatingThermostatSetpointHold')
+        heatValue = tonumber(heatValue)
+        self:debug('heatingThermostatSetpointHold ' .. heatValue)
+        if heatValue < 0.1 then
+            heatValue = fibaro.getValue(self.id, 'heatingThermostatSetpoint')
         end
+        heatValue = math.ceil(heatValue * 10) / 10
+        self:debug(string.format("getValue() returned %f", heatValue))
+        if (roundedCoolValue - heatValue) < 2 then
+            heatValue = roundedCoolValue - 2.0
+        end
+
+        self:callNestApi("sdm.devices.commands.ThermostatTemperatureSetpoint.SetRange",
+            { ['heatCelsius'] = heatValue, ['coolCelsius'] = roundedCoolValue },
+            function()
+                self:updateProperty("coolingThermostatSetpoint", roundedCoolValue)
+                self:setVariable("coolingThermostatSetpointHold", '0')
+                self:debug('After cooling update ' .. self.properties.coolingThermostatSetpoint)
+            end
+        )
     end
 end
 

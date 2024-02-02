@@ -10,6 +10,7 @@
         "NestMotionPerson",
         "json",
         "fibaro",
-        "api"
+        "api",
+        "RefreshStateSubscriber"
     ]
 }
