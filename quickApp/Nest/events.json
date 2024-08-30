@@ -1,0 +1,589 @@
+[
+    {
+      "data": {
+        "id": 10,
+        "startTime": 1706001216,
+        "subid": 1,
+        "trigger": null,
+        "type": ""
+      },
+      "id": 865251,
+      "objects": [
+        {
+          "id": 10,
+          "type": "scene"
+        }
+      ],
+      "sourceId": 376,
+      "sourceType": "device",
+      "timestamp": 1706001216,
+      "type": "SceneStartedEvent"
+    },
+    {
+      "data": {
+        "id": 376,
+        "newValue": false,
+        "oldValue": true,
+        "property": "value"
+      },
+      "id": 865250,
+      "objects": [
+        {
+          "id": 376,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001215,
+      "type": "DevicePropertyUpdatedEvent"
+    },
+    {
+      "data": {
+        "actionName": "turnOn",
+        "args": [],
+        "id": 88,
+        "isSupportedByDevice": true
+      },
+      "id": 865249,
+      "objects": [
+        {
+          "id": 88,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001208,
+      "type": "DeviceActionRanEvent"
+    },
+    {
+      "data": {
+        "id": 3,
+        "startTime": 1706001208,
+        "subid": 1,
+        "trigger": null,
+        "type": ""
+      },
+      "id": 865248,
+      "objects": [
+        {
+          "id": 3,
+          "type": "scene"
+        }
+      ],
+      "sourceId": 376,
+      "sourceType": "device",
+      "timestamp": 1706001208,
+      "type": "SceneStartedEvent"
+    },
+    {
+      "data": {
+        "id": 376,
+        "newValue": true,
+        "oldValue": false,
+        "property": "value"
+      },
+      "id": 865247,
+      "objects": [
+        {
+          "id": 376,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001208,
+      "type": "DevicePropertyUpdatedEvent"
+    },
+    {
+      "data": {
+        "id": 10,
+        "startTime": 1706001202,
+        "subid": 1,
+        "trigger": null,
+        "type": ""
+      },
+      "id": 865246,
+      "objects": [
+        {
+          "id": 10,
+          "type": "scene"
+        }
+      ],
+      "sourceId": 376,
+      "sourceType": "device",
+      "timestamp": 1706001202,
+      "type": "SceneStartedEvent"
+    },
+    {
+      "data": {
+        "id": 376,
+        "newValue": false,
+        "oldValue": true,
+        "property": "value"
+      },
+      "id": 865245,
+      "objects": [
+        {
+          "id": 376,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001201,
+      "type": "DevicePropertyUpdatedEvent"
+    },
+    {
+      "data": {
+        "actionName": "turnOn",
+        "args": [],
+        "id": 88,
+        "isSupportedByDevice": true
+      },
+      "id": 865244,
+      "objects": [
+        {
+          "id": 88,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001194,
+      "type": "DeviceActionRanEvent"
+    },
+    {
+      "data": {
+        "id": 3,
+        "startTime": 1706001194,
+        "subid": 1,
+        "trigger": null,
+        "type": ""
+      },
+      "id": 865243,
+      "objects": [
+        {
+          "id": 3,
+          "type": "scene"
+        }
+      ],
+      "sourceId": 376,
+      "sourceType": "device",
+      "timestamp": 1706001194,
+      "type": "SceneStartedEvent"
+    },
+    {
+      "data": {
+        "id": 376,
+        "newValue": true,
+        "oldValue": false,
+        "property": "value"
+      },
+      "id": 865242,
+      "objects": [
+        {
+          "id": 376,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001194,
+      "type": "DevicePropertyUpdatedEvent"
+    },
+    {
+      "data": {
+        "id": 10,
+        "startTime": 1706001181,
+        "subid": 1,
+        "trigger": null,
+        "type": ""
+      },
+      "id": 865241,
+      "objects": [
+        {
+          "id": 10,
+          "type": "scene"
+        }
+      ],
+      "sourceId": 376,
+      "sourceType": "device",
+      "timestamp": 1706001181,
+      "type": "SceneStartedEvent"
+    },
+    {
+      "data": {
+        "id": 376,
+        "newValue": false,
+        "oldValue": true,
+        "property": "value"
+      },
+      "id": 865240,
+      "objects": [
+        {
+          "id": 376,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001180,
+      "type": "DevicePropertyUpdatedEvent"
+    },
+    {
+      "data": {
+        "actionName": "turnOn",
+        "args": [],
+        "id": 88,
+        "isSupportedByDevice": true
+      },
+      "id": 865239,
+      "objects": [
+        {
+          "id": 88,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001173,
+      "type": "DeviceActionRanEvent"
+    },
+    {
+      "data": {
+        "id": 3,
+        "startTime": 1706001173,
+        "subid": 1,
+        "trigger": null,
+        "type": ""
+      },
+      "id": 865238,
+      "objects": [
+        {
+          "id": 3,
+          "type": "scene"
+        }
+      ],
+      "sourceId": 376,
+      "sourceType": "device",
+      "timestamp": 1706001173,
+      "type": "SceneStartedEvent"
+    },
+    {
+      "data": {
+        "id": 376,
+        "newValue": true,
+        "oldValue": false,
+        "property": "value"
+      },
+      "id": 865237,
+      "objects": [
+        {
+          "id": 376,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001173,
+      "type": "DevicePropertyUpdatedEvent"
+    },
+    {
+      "data": {
+        "actionName": "setCoolingThermostatSetpoint",
+        "args": [
+          "22.222222",
+          "C"
+        ],
+        "id": 381,
+        "isSupportedByDevice": true
+      },
+      "id": 865236,
+      "objects": [
+        {
+          "id": 381,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001153,
+      "type": "DeviceActionRanEvent"
+    },
+    {
+      "data": {
+        "actionName": "setHeatingThermostatSetpoint",
+        "args": [
+          "20.000000",
+          "C"
+        ],
+        "id": 381,
+        "isSupportedByDevice": true
+      },
+      "id": 865235,
+      "objects": [
+        {
+          "id": 381,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001153,
+      "type": "DeviceActionRanEvent"
+    },
+    {
+      "data": {
+        "id": 10,
+        "startTime": 1706001152,
+        "subid": 1,
+        "trigger": null,
+        "type": ""
+      },
+      "id": 865234,
+      "objects": [
+        {
+          "id": 10,
+          "type": "scene"
+        }
+      ],
+      "sourceId": 376,
+      "sourceType": "device",
+      "timestamp": 1706001152,
+      "type": "SceneStartedEvent"
+    },
+    {
+      "data": {
+        "id": 376,
+        "newValue": false,
+        "oldValue": true,
+        "property": "value"
+      },
+      "id": 865233,
+      "objects": [
+        {
+          "id": 376,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001151,
+      "type": "DevicePropertyUpdatedEvent"
+    },
+    {
+      "data": {
+        "actionName": "turnOn",
+        "args": [],
+        "id": 88,
+        "isSupportedByDevice": true
+      },
+      "id": 865232,
+      "objects": [
+        {
+          "id": 88,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001145,
+      "type": "DeviceActionRanEvent"
+    },
+    {
+      "data": {
+        "id": 3,
+        "startTime": 1706001144,
+        "subid": 1,
+        "trigger": null,
+        "type": ""
+      },
+      "id": 865231,
+      "objects": [
+        {
+          "id": 3,
+          "type": "scene"
+        }
+      ],
+      "sourceId": 376,
+      "sourceType": "device",
+      "timestamp": 1706001144,
+      "type": "SceneStartedEvent"
+    },
+    {
+      "data": {
+        "id": 376,
+        "newValue": true,
+        "oldValue": false,
+        "property": "value"
+      },
+      "id": 865230,
+      "objects": [
+        {
+          "id": 376,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001144,
+      "type": "DevicePropertyUpdatedEvent"
+    },
+    {
+      "data": {
+        "id": 10,
+        "startTime": 1706001129,
+        "subid": 1,
+        "trigger": null,
+        "type": ""
+      },
+      "id": 865229,
+      "objects": [
+        {
+          "id": 10,
+          "type": "scene"
+        }
+      ],
+      "sourceId": 376,
+      "sourceType": "device",
+      "timestamp": 1706001129,
+      "type": "SceneStartedEvent"
+    },
+    {
+      "data": {
+        "id": 376,
+        "newValue": false,
+        "oldValue": true,
+        "property": "value"
+      },
+      "id": 865228,
+      "objects": [
+        {
+          "id": 376,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001128,
+      "type": "DevicePropertyUpdatedEvent"
+    },
+    {
+      "data": {
+        "id": 107,
+        "newValue": 30.67694499998005,
+        "oldValue": 30.674778333313384,
+        "property": "energy"
+      },
+      "id": 865227,
+      "objects": [
+        {
+          "id": 107,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001120,
+      "type": "DevicePropertyUpdatedEvent"
+    },
+    {
+      "data": {
+        "actionName": "turnOn",
+        "args": [],
+        "id": 88,
+        "isSupportedByDevice": true
+      },
+      "id": 865226,
+      "objects": [
+        {
+          "id": 88,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001117,
+      "type": "DeviceActionRanEvent"
+    },
+    {
+      "data": {
+        "id": 3,
+        "startTime": 1706001117,
+        "subid": 1,
+        "trigger": null,
+        "type": ""
+      },
+      "id": 865225,
+      "objects": [
+        {
+          "id": 3,
+          "type": "scene"
+        }
+      ],
+      "sourceId": 376,
+      "sourceType": "device",
+      "timestamp": 1706001117,
+      "type": "SceneStartedEvent"
+    },
+    {
+      "data": {
+        "id": 376,
+        "newValue": true,
+        "oldValue": false,
+        "property": "value"
+      },
+      "id": 865224,
+      "objects": [
+        {
+          "id": 376,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001117,
+      "type": "DevicePropertyUpdatedEvent"
+    },
+    {
+      "data": {
+        "id": 10,
+        "startTime": 1706001101,
+        "subid": 1,
+        "trigger": null,
+        "type": ""
+      },
+      "id": 865223,
+      "objects": [
+        {
+          "id": 10,
+          "type": "scene"
+        }
+      ],
+      "sourceId": 376,
+      "sourceType": "device",
+      "timestamp": 1706001101,
+      "type": "SceneStartedEvent"
+    },
+    {
+      "data": {
+        "id": 376,
+        "newValue": false,
+        "oldValue": true,
+        "property": "value"
+      },
+      "id": 865222,
+      "objects": [
+        {
+          "id": 376,
+          "type": "device"
+        }
+      ],
+      "sourceId": 0,
+      "sourceType": "system",
+      "timestamp": 1706001100,
+      "type": "DevicePropertyUpdatedEvent"
+    }
+  ]
